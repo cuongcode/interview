@@ -20,6 +20,7 @@ export const Button:FC<ButtonProps> = (props) => {
         className
       )}
       disabled={disabled}
+      onClick={onClick}
       {...rest}
     >
       {fetch ? null : text }

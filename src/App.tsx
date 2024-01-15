@@ -60,18 +60,18 @@ const _onAddPriceLevel = (price:any, count:any, col:any, setCol:any) => {
     <div className="p-10 bg-background-black text-white h-screen">
       <div className='flex flex-col'>
         <div>Price</div>
-        <input type="number" className='border border-gray-200' value={buyPrice} onChange={(e) => setBuyPrice(Number(e.target.value))}/>
+        <input type="number" className='border border-gray-200 text-gray-500' value={buyPrice} onChange={(e) => setBuyPrice(Number(e.target.value))}/>
         <div>Quantity</div>
-        <input type="number" className='border border-gray-200' value={buyCount} onChange={(e) => setBuyCount(Number(e.target.value))}/>
+        <input type="number" className='border border-gray-200 text-gray-500' value={buyCount} onChange={(e) => setBuyCount(Number(e.target.value))}/>
         <Button preset='success' text='Buy' onClick={_onAddBuy} />
       </div>
 
       <div className='flex flex-col'>
         <div>Price</div>
-        <input type="number" className='border border-gray-200' value={sellPrice} onChange={(e) => setSellPrice(Number(e.target.value))}/>
+        <input type="number" className='border border-gray-200 text-gray-500' value={sellPrice} onChange={(e) => setSellPrice(Number(e.target.value))}/>
         <div>Quantity</div>
-        <input type="number" className='border border-gray-200' value={sellCount} onChange={(e) => setSellCount(Number(e.target.value))}/>
-        <Button preset='error' text='Sell' onClick={_onAddSell}>Sell</Button>
+        <input type="number" className='border border-gray-200 text-gray-500' value={sellCount} onChange={(e) => setSellCount(Number(e.target.value))}/>
+        <Button preset='error' text='Sell' onClick={_onAddSell} />
       </div>
 
       <div className=''> 
