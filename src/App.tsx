@@ -66,8 +66,8 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col gap-3 items-center p-10 bg-background-black text-white h-screen">
-      <div className="flex gap-3 max-w-xl">
+    <div className="flex flex-col gap-5 items-center p-10 bg-background-black text-white h-screen">
+      <div className="flex gap-4 max-w-xl">
         <div className="flex flex-col gap-3">
           <BaseInput
             title="Price"
@@ -79,7 +79,7 @@ function App() {
             value={buyCount}
             onChange={(e) => setBuyCount(e.target.value.replace(/\D/g, ""))}
           />
-          <Button preset="success" text="Buy" onClick={_onAddBuy} />
+          <Button preset="success" text="Buy" onClick={_onAddBuy} disabled={buyPrice === '' || buyCount === ''}/>
         </div>
 
         <div className="flex flex-col gap-3">
@@ -93,7 +93,7 @@ function App() {
             value={sellCount}
             onChange={(e) => setSellCount(e.target.value.replace(/\D/g, ""))}
           />
-          <Button preset="error" text="Sell" onClick={_onAddSell} />
+          <Button preset="error" text="Sell" onClick={_onAddSell} disabled={sellPrice === '' || sellCount === ''}/>
         </div>
       </div>
 

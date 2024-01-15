@@ -26,11 +26,11 @@ export const BaseInput: FC<BaseInputProps> = (props) => {
     ...rest
   } = props;
   return (
-    <div className="flex flex-col w-32">
+    <div className="flex flex-col w-32 gap-2">
       <div className="text-sm">{title}</div>
       <div
         className={clsx(
-          "flex items-center gap-2 overflow-hidden border border-gray-700 rounded-sm",
+          "flex items-center gap-2 overflow-hidden border border-gray-700 rounded-lg h-10 p-3",
           className
         )}
       >
