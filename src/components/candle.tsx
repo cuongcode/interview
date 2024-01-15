@@ -10,7 +10,7 @@ export const Candle:FC<CandleProps> = (props) => {
   const {number, preset} = props
   return (
     <div
-      className={clsx('', CandlePreset[preset])}
+      className={clsx('opacity-60', CandlePreset[preset])}
       style={{width: `${(number*10).toString()}px`}}
     >
       {number}
@@ -19,6 +19,6 @@ export const Candle:FC<CandleProps> = (props) => {
 };
 
 const CandlePreset = {
-  buy: 'bg-green-500',
-  sell: 'bg-red-500',
+  buy: 'bg-success-100',
+  sell: 'bg-error-100',
 }

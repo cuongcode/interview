@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wall } from './components';
+import { Wall, Button } from './components';
 
 const BUYCOL = [
   {price: 42000, number: 15},
@@ -57,22 +57,21 @@ const _onAddPriceLevel = (price:any, count:any, col:any, setCol:any) => {
 }
 
   return (
-    <div className="App">
-
-      <div className=''>
-        <button onClick={_onAddBuy}>Buy</button>
+    <div className="p-10 bg-background-black text-white h-screen">
+      <div className='flex flex-col'>
         <div>Price</div>
         <input type="number" className='border border-gray-200' value={buyPrice} onChange={(e) => setBuyPrice(Number(e.target.value))}/>
         <div>Quantity</div>
         <input type="number" className='border border-gray-200' value={buyCount} onChange={(e) => setBuyCount(Number(e.target.value))}/>
+        <Button preset='success' text='Buy' onClick={_onAddBuy} />
       </div>
 
-      <div>
-        <button onClick={_onAddSell}>Sell</button>
+      <div className='flex flex-col'>
         <div>Price</div>
         <input type="number" className='border border-gray-200' value={sellPrice} onChange={(e) => setSellPrice(Number(e.target.value))}/>
         <div>Quantity</div>
         <input type="number" className='border border-gray-200' value={sellCount} onChange={(e) => setSellCount(Number(e.target.value))}/>
+        <Button preset='error' text='Sell' onClick={_onAddSell}>Sell</Button>
       </div>
 
       <div className=''> 
