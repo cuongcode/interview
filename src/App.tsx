@@ -23,31 +23,60 @@ const [sellPrice, setSellPrice] = useState(0)
 const [buyCount, setBuyCount] = useState(0)
 const [sellCount, setSellCount] = useState(0)
 
+// const _onAddBuy = () => {
+//   if (buyPrice > 0 && buyCount > 0 ) {
+//     const buyPriceLevels = buyCol.map((priceLevel)=>priceLevel.price)
+//     if (buyPriceLevels.includes(buyPrice)) {
+//       const updatedBuyCol =  buyCol.map((priceLevel) => {
+//         if (buyPrice === priceLevel.price) {
+//           return (
+//             {...priceLevel, number: priceLevel.number + buyCount}
+//           )
+//         }
+//         return priceLevel
+//       })
+//       setBuyCol(updatedBuyCol)
+//     } else {
+//       const updatedBuyCol = [...buyCol, {price: buyPrice, number: buyCount}]
+//       updatedBuyCol.sort((a, b) => {
+//         return b.price - a.price
+//       })
+//       setBuyCol(updatedBuyCol)
+//     }
+//   }
+//   return
+// }
+
 const _onAddBuy = () => {
-  if (buyPrice > 0 && buyCount > 0 ) {
-    const buyPriceLevels = buyCol.map((priceLevel)=>priceLevel.price)
-    if (buyPriceLevels.includes(buyPrice)) {
-      const updatedBuyCol =  buyCol.map((priceLevel) => {
-        if (buyPrice === priceLevel.price) {
+  _onAddPriceLevel(buyPrice, buyCount, buyCol, setBuyCol)
+}
+
+const _onAddSell = () => {
+  _onAddPriceLevel(sellPrice, sellCount, sellCol, setSellCol)
+}
+
+const _onAddPriceLevel = (price:any, count:any, col:any, setCol:any) => {
+  if (price > 0 && count > 0 ) {
+    const buyPriceLevels = col.map((priceLevel:any)=>priceLevel.price)
+    if (buyPriceLevels.includes(price)) {
+      const updatedBuyCol =  col.map((priceLevel:any) => {
+        if (price === priceLevel.price) {
           return (
-            {...priceLevel, number: priceLevel.number + buyCount}
+            {...priceLevel, number: priceLevel.number + count}
           )
         }
         return priceLevel
       })
-      setBuyCol(updatedBuyCol)
+      setCol(updatedBuyCol)
     } else {
-      const updatedBuyCol = [...buyCol, {price: buyPrice, number: buyCount}]
+      const updatedBuyCol = [...col, {price: price, number: count}]
       updatedBuyCol.sort((a, b) => {
         return b.price - a.price
       })
-      setBuyCol(updatedBuyCol)
+      setCol(updatedBuyCol)
     }
   }
   return
-}
-const _onAddSell = () => {
-  console.log(sellPrice)
 }
 
   return (
