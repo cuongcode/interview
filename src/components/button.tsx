@@ -29,7 +29,7 @@ export const Button:FC<ButtonProps> = (props) => {
   );
 };
 
-const regularButton = 'rounded-[12px] w-[220px] h-[40px] text-p4 text-white font-medium focus:ring-[2px] focus:ring-offset-2 focus:ring-offset-background-black'
+const regularButton = 'rounded-xl h-10 text-p4 text-white font-medium focus:ring-[2px] focus:ring-offset-2 focus:ring-offset-background-black'
 
 const ButtonPreset = {
   base: '',

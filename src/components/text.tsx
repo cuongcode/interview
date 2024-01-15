@@ -22,6 +22,8 @@ const textPreset = {
   p4: 'text-p4',
   p5: 'text-p5',
   p6: 'text-p6',
+
+  error: 'text-error-100 text-p5',
 }
 
 export const Text:FC<TextProps> = (props) => {
