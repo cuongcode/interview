@@ -68,7 +68,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col gap-2 items-center p-10 bg-background-black text-white h-screen">
+    <div className="flex flex-col gap-2 items-center p-10 bg-background-black text-white min-h-screen">
       <div className="flex w-72 items-center justify-between">
         <button onClick={()=>setIsBuy(true)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", isBuy ? 'border-t-success-100': '')}>Buy</button>
         <button onClick={()=>setIsBuy(false)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", !isBuy ? 'border-t-error-100': '')}>Sell</button>
