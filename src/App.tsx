@@ -68,10 +68,10 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col gap-5 items-center p-10 bg-background-black text-white h-screen">
+    <div className="flex flex-col gap-2 items-center p-10 bg-background-black text-white h-screen">
       <div className="flex w-72 items-center justify-between">
-        <button onClick={()=>setIsBuy(true)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", isBuy ? 'border-t-primary-100': '')}>Buy</button>
-        <button onClick={()=>setIsBuy(false)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", !isBuy ? 'border-t-primary-100': '')}>Sell</button>
+        <button onClick={()=>setIsBuy(true)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", isBuy ? 'border-t-success-100': '')}>Buy</button>
+        <button onClick={()=>setIsBuy(false)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", !isBuy ? 'border-t-error-100': '')}>Sell</button>
       </div>
       <div className="flex gap-4 max-w-xl">
         {isBuy ? 
@@ -81,7 +81,7 @@ function App() {
         }
       </div>
 
-      <div className="bg-neutral-800/50 p-2 rounded-md">
+      <div className="bg-neutral-800/50 p-2 rounded-md mt-5">
         <Wall col={buyCol} preset="buy" />
         <Wall col={sellCol} preset="sell" />
       </div>
@@ -95,7 +95,7 @@ const InputSection = ({price, count, onAdd, setPrice, setCount, text, preset}:{
   price:any, count:any, onAdd:any, setPrice:any, setCount:any, text:any, preset:any
 }) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-5">
     <BaseInput
       title="Price"
       value={price}
@@ -106,7 +106,7 @@ const InputSection = ({price, count, onAdd, setPrice, setCount, text, preset}:{
       value={count}
       onChange={(e) => setCount(e.target.value.replace(/\D/g, ""))}
     />
-    <Button preset={preset} text={text} onClick={onAdd} disabled={price === '' || count === ''}/>
+    <Button className="mt-2" preset={preset} text={text} onClick={onAdd} disabled={price === '' || count === ''}/>
   </div>
   );
 };
