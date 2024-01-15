@@ -26,6 +26,12 @@ module.exports = {
           bluedark:  '#151742',
           bluelight: '#1C1E4A',
         },
+        bluetheme: {
+          100: '#0C0C31',
+          80: '#151742',
+          60: '#1C1E4A',
+          40: '#30325E'
+        },
         primary: {
           100: '#186ADE',
           80: '#3D8DF5',

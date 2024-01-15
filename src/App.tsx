@@ -68,7 +68,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col gap-2 items-center p-10 bg-background-bluedark text-white min-h-screen">
+    <div className="flex flex-col gap-2 items-center p-10 bg-bluetheme-100 text-white min-h-screen">
       <div className="flex w-72 items-center justify-between">
         <SwitchButton preset="buy" text="Buy" isBuy={isBuy} onClick={()=>setIsBuy(true)}/>
         <SwitchButton preset="sell" text="Sell" isBuy={isBuy} onClick={()=>setIsBuy(false)}/>
@@ -79,7 +79,7 @@ function App() {
         <InputSection text='Sell' preset='error' price={sellPrice} count={sellCount} onAdd={_onAddSell} setPrice={setSellPrice} setCount={setSellCount}/>
       }
 
-      <div className="flex flex-col bg-background-bluelight p-4 rounded-md mt-5 w-72 gap-3">
+      <div className="flex flex-col bg-bluetheme-60 p-4 rounded-md mt-5 w-72 gap-3">
         <div className="grid grid-cols-[80px_1fr]">
           <Text preset="p4" text="Price" className="font-thin"/>
           <Text preset="p4" text="Amount"className="font-thin"/>
