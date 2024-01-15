@@ -26,10 +26,14 @@ function App() {
 
   const _onAddBuy = () => {
     _onAddPriceLevel(buyPrice, buyCount, buyCol, setBuyCol);
+    setBuyPrice("")
+    setBuyCount("")
   };
 
   const _onAddSell = () => {
     _onAddPriceLevel(sellPrice, sellCount, sellCol, setSellCol);
+    setSellPrice("")
+    setSellCount("")
   };
 
   const _onAddPriceLevel = (

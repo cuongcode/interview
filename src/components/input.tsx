@@ -2,8 +2,6 @@ import clsx from "clsx";
 import type { FC, ReactNode } from "react";
 import React from "react";
 
-import { Text } from "./";
-
 interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   title?: string;

@@ -11,7 +11,7 @@ export const Candle:FC<CandleProps> = (props) => {
   return (
     <div
       className={clsx('opacity-60', CandlePreset[preset])}
-      style={{width: `${(number*10).toString()}px`}}
+      style={{width: `${(number*10).toString()}px`, maxWidth: '200px'}}
     >
       {number}
     </div>
