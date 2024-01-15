@@ -10,7 +10,7 @@ interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   disabled?: boolean;
-  prefix?: string;
+  suffix?: string;
 }
 
 export const BaseInput: FC<BaseInputProps> = (props) => {
@@ -22,7 +22,7 @@ export const BaseInput: FC<BaseInputProps> = (props) => {
     className,
     onChange,
     disabled,
-    prefix,
+    suffix,
     ...rest
   } = props;
   return (
@@ -30,15 +30,10 @@ export const BaseInput: FC<BaseInputProps> = (props) => {
       <div className="text-sm">{title}</div>
       <div
         className={clsx(
-          "flex items-center gap-2 overflow-hidden border border-gray-700 rounded-lg h-10 p-3",
+          "flex items-center gap-2 overflow-hidden border border-gray-700 rounded-lg h-10 p-3 hover:border-gray-600",
           className
         )}
       >
-        {prefix ? (
-          <div className="flex flex-1 items-center justify-center self-stretch bg-main-bbg px-4 text-sm font-light">
-            {prefix}
-          </div>
-        ) : null}
         <input
           type="text"
           placeholder={placeholder}
@@ -48,6 +43,7 @@ export const BaseInput: FC<BaseInputProps> = (props) => {
           disabled={disabled}
           {...rest}
         />
+        <div className="text-gray-500">{suffix}</div>
       </div>
     </div>
   );

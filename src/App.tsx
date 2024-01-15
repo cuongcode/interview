@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Wall, Button, BaseInput } from "./components";
+import { Wall, Button, BaseInput, Text } from "./components";
 import { clsx } from "clsx";
 
 const BUYCOL = [
@@ -68,21 +68,26 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col gap-2 items-center p-10 bg-background-black text-white min-h-screen">
+    <div className="flex flex-col gap-2 items-center p-10 bg-background-bluedark text-white min-h-screen">
       <div className="flex w-72 items-center justify-between">
-        <button onClick={()=>setIsBuy(true)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", isBuy ? 'border-t-success-100': '')}>Buy</button>
-        <button onClick={()=>setIsBuy(false)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", !isBuy ? 'border-t-error-100': '')}>Sell</button>
+        <SwitchButton preset="buy" text="Buy" isBuy={isBuy} onClick={()=>setIsBuy(true)}/>
+        <SwitchButton preset="sell" text="Sell" isBuy={isBuy} onClick={()=>setIsBuy(false)}/>
       </div>
-      <div className="flex gap-4 max-w-xl">
-        {isBuy ? 
+      {isBuy ? 
         <InputSection text='Buy' preset='success' price={buyPrice} count={buyCount} onAdd={_onAddBuy} setPrice={setBuyPrice} setCount={setBuyCount}/>
-        : 
+      : 
         <InputSection text='Sell' preset='error' price={sellPrice} count={sellCount} onAdd={_onAddSell} setPrice={setSellPrice} setCount={setSellCount}/>
-        }
-      </div>
+      }
 
-      <div className="bg-neutral-800/50 p-2 rounded-md mt-5">
+      <div className="flex flex-col bg-background-bluelight p-4 rounded-md mt-5 w-72 gap-3">
+        <div className="grid grid-cols-[80px_1fr]">
+          <Text preset="p4" text="Price" className="font-thin"/>
+          <Text preset="p4" text="Amount"className="font-thin"/>
+          <Text preset="p6" text="USDT"className="font-thin"/>
+          <Text preset="p6" text="BTC"className="font-thin"/>
+        </div>
         <Wall col={buyCol} preset="buy" />
+        <Text preset="p3" text="37500" className="text-success-60"/>
         <Wall col={sellCol} preset="sell" />
       </div>
     </div>
@@ -95,18 +100,30 @@ const InputSection = ({price, count, onAdd, setPrice, setCount, text, preset}:{
   price:any, count:any, onAdd:any, setPrice:any, setCount:any, text:any, preset:any
 }) => {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-2">
     <BaseInput
-      title="Price"
       value={price}
+      placeholder="Price"
       onChange={(e) => setPrice(e.target.value.replace(/\D/g, ""))}
+      suffix="USDT"
     />
     <BaseInput
-      title="Quantity"
       value={count}
+      placeholder="Amount"
       onChange={(e) => setCount(e.target.value.replace(/\D/g, ""))}
+      suffix="BTC"
     />
     <Button className="mt-2" preset={preset} text={text} onClick={onAdd} disabled={price === '' || count === ''}/>
   </div>
+  );
+};
+
+const SwitchButton = ({preset, text, isBuy, onClick}:{preset:keyof typeof SwitchButtonPreset; text:string; isBuy:boolean, onClick:any}) => {
+  const SwitchButtonPreset = {
+    buy: clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", isBuy ? 'border-t-success-100': ''),
+    sell: clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", !isBuy ? 'border-t-error-100': '')
+  }
+  return (
+    <button onClick={onClick} className={SwitchButtonPreset[preset]}>{text}</button>
   );
 };

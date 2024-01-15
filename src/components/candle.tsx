@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Text } from './text';
 import clsx from 'clsx';
 
 interface CandleProps {
@@ -13,7 +14,7 @@ export const Candle:FC<CandleProps> = (props) => {
       className={clsx('opacity-60', CandlePreset[preset])}
       style={{width: `${(number*10).toString()}px`, maxWidth: '200px'}}
     >
-      {number}
+      <Text preset='p4' text={number.toString()}/>
     </div>
   );
 };

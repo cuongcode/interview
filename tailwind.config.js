@@ -23,6 +23,8 @@ module.exports = {
         background: {
           black: '#161616',
           gray: '#252525',
+          bluedark:  '#151742',
+          bluelight: '#1C1E4A',
         },
         primary: {
           100: '#186ADE',
