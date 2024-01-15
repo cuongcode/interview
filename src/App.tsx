@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Wall, Button, BaseInput } from "./components";
+import { clsx } from "clsx";
 
 const BUYCOL = [
   { price: 42000, number: 15 },
@@ -23,6 +24,7 @@ function App() {
   const [sellPrice, setSellPrice] = useState("");
   const [buyCount, setBuyCount] = useState("");
   const [sellCount, setSellCount] = useState("");
+  const [isBuy, setIsBuy] = useState(true)
 
   const _onAddBuy = () => {
     _onAddPriceLevel(buyPrice, buyCount, buyCol, setBuyCol);
@@ -67,34 +69,16 @@ function App() {
 
   return (
     <div className="flex flex-col gap-5 items-center p-10 bg-background-black text-white h-screen">
+      <div className="flex w-72 items-center justify-between">
+        <button onClick={()=>setIsBuy(true)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", isBuy ? 'border-t-primary-100': '')}>Buy</button>
+        <button onClick={()=>setIsBuy(false)} className={clsx("w-1/2 flex items-center justify-center text-p2 border-t-4", !isBuy ? 'border-t-primary-100': '')}>Sell</button>
+      </div>
       <div className="flex gap-4 max-w-xl">
-        <div className="flex flex-col gap-3">
-          <BaseInput
-            title="Price"
-            value={buyPrice}
-            onChange={(e) => setBuyPrice(e.target.value.replace(/\D/g, ""))}
-          />
-          <BaseInput
-            title="Quantity"
-            value={buyCount}
-            onChange={(e) => setBuyCount(e.target.value.replace(/\D/g, ""))}
-          />
-          <Button preset="success" text="Buy" onClick={_onAddBuy} disabled={buyPrice === '' || buyCount === ''}/>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <BaseInput
-            title="Price"
-            value={sellPrice}
-            onChange={(e) => setSellPrice(e.target.value.replace(/\D/g, ""))}
-          />
-          <BaseInput
-            title="Quantity"
-            value={sellCount}
-            onChange={(e) => setSellCount(e.target.value.replace(/\D/g, ""))}
-          />
-          <Button preset="error" text="Sell" onClick={_onAddSell} disabled={sellPrice === '' || sellCount === ''}/>
-        </div>
+        {isBuy ? 
+        <InputSection text='Buy' preset='success' price={buyPrice} count={buyCount} onAdd={_onAddBuy} setPrice={setBuyPrice} setCount={setBuyCount}/>
+        : 
+        <InputSection text='Sell' preset='error' price={sellPrice} count={sellCount} onAdd={_onAddSell} setPrice={setSellPrice} setCount={setSellCount}/>
+        }
       </div>
 
       <div className="bg-neutral-800/50 p-2 rounded-md">
@@ -106,3 +90,23 @@ function App() {
 }
 
 export default App;
+
+const InputSection = ({price, count, onAdd, setPrice, setCount, text, preset}:{
+  price:any, count:any, onAdd:any, setPrice:any, setCount:any, text:any, preset:any
+}) => {
+  return (
+    <div className="flex flex-col gap-3">
+    <BaseInput
+      title="Price"
+      value={price}
+      onChange={(e) => setPrice(e.target.value.replace(/\D/g, ""))}
+    />
+    <BaseInput
+      title="Quantity"
+      value={count}
+      onChange={(e) => setCount(e.target.value.replace(/\D/g, ""))}
+    />
+    <Button preset={preset} text={text} onClick={onAdd} disabled={price === '' || count === ''}/>
+  </div>
+  );
+};

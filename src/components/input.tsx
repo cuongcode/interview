@@ -26,7 +26,7 @@ export const BaseInput: FC<BaseInputProps> = (props) => {
     ...rest
   } = props;
   return (
-    <div className="flex flex-col w-32 gap-2">
+    <div className="flex flex-col w-64 gap-2">
       <div className="text-sm">{title}</div>
       <div
         className={clsx(
