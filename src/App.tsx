@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Wall } from './components';
 
 const BUYCOL = [
   {price: 42000, number: 15},
@@ -22,30 +23,6 @@ const [buyPrice, setBuyPrice] = useState(0)
 const [sellPrice, setSellPrice] = useState(0)
 const [buyCount, setBuyCount] = useState(0)
 const [sellCount, setSellCount] = useState(0)
-
-// const _onAddBuy = () => {
-//   if (buyPrice > 0 && buyCount > 0 ) {
-//     const buyPriceLevels = buyCol.map((priceLevel)=>priceLevel.price)
-//     if (buyPriceLevels.includes(buyPrice)) {
-//       const updatedBuyCol =  buyCol.map((priceLevel) => {
-//         if (buyPrice === priceLevel.price) {
-//           return (
-//             {...priceLevel, number: priceLevel.number + buyCount}
-//           )
-//         }
-//         return priceLevel
-//       })
-//       setBuyCol(updatedBuyCol)
-//     } else {
-//       const updatedBuyCol = [...buyCol, {price: buyPrice, number: buyCount}]
-//       updatedBuyCol.sort((a, b) => {
-//         return b.price - a.price
-//       })
-//       setBuyCol(updatedBuyCol)
-//     }
-//   }
-//   return
-// }
 
 const _onAddBuy = () => {
   _onAddPriceLevel(buyPrice, buyCount, buyCol, setBuyCol)
@@ -98,29 +75,10 @@ const _onAddPriceLevel = (price:any, count:any, col:any, setCol:any) => {
         <input type="number" className='border border-gray-200' value={sellCount} onChange={(e) => setSellCount(Number(e.target.value))}/>
       </div>
 
-      <div className='flex flex-col w-fit'> 
-        <div className='bg-green-500 flex flex-col'>
-          {buyCol.map((row)=> {
-            return (
-              <div key={row.price} className='flex gap-5'>
-                <div>{row.price}</div>
-                <div>{row.number}</div>
-              </div>
-            )
-          })}
-        </div>
-          
-        <div className='bg-red-500 flex flex-col'>
-          {sellCol.map((row)=> {
-            return (
-              <div key={row.price} className='flex gap-5'>
-                <div>{row.price}</div>
-                <div>{row.number}</div>
-              </div>
-            )
-            })}
-          </div>
-        </div>
+      <div className=''> 
+        <Wall col={buyCol} preset='buy'/>
+        <Wall col={sellCol} preset='sell'/>
+      </div>
     </div>
   );
 }
