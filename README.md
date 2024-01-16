@@ -8,4 +8,4 @@ React, Tailwind
 
 ## Deployed App
 
-[https://interview-one-tau.vercel.app/]
+https://interview-one-tau.vercel.app/
