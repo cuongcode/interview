@@ -12,9 +12,9 @@ export const BUYCOL = [
   { name: 'user3', price: 38000, number: 9 },
 ];
 export const SELLCOL = [
-  { name: 'user1', price: 37000, number: 15 },
-  { name: 'user2', price: 36000, number: 9 },
-  { name: 'user3', price: 35000, number: 17 },
-  { name: 'user4', price: 34000, number: 13 },
   { name: 'user3', price: 33000, number: 8 },
+  { name: 'user4', price: 34000, number: 13 },
+  { name: 'user3', price: 35000, number: 17 },
+  { name: 'user2', price: 36000, number: 9 },
+  { name: 'user1', price: 37000, number: 15 },
 ];

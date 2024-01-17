@@ -71,27 +71,32 @@ function App() {
   //   }
   //   return;
   // };
-  const udpateSellUserValue = (ticket:any, minusAmount: any) => {
-    const updatedUsers = users.map((u) => {
-      if(u.name === ticket.name) {
-        return {...u, btc: u.btc-minusAmount, usdt: u.usdt + (minusAmount*ticket.price)}
-      }
-      return u
-    })
-    setUsers(updatedUsers)
-  }
-  const udpateBuyUserValue = (ticket:any, plusAmount:any) => {
+  const udpateSellUserValue = (user:any, ticket:any, minusAmount: any) => {
     setUsers((prev) => {
       return prev.map((u) => {
         if(u.name === ticket.name) {
-          console.log(true)
-          return {...u, btc: u.btc+plusAmount, usdt: u.usdt - (plusAmount*ticket.price)}
+          return {...u, btc: u.btc-minusAmount, usdt: u.usdt + (minusAmount*ticket.price)}
+        }
+        if(u.name === user) {
+          return {...u, btc: u.btc+minusAmount, usdt: u.usdt - (minusAmount*ticket.price)}
         }
         return u
       })
     })
   }
-
+  const udpateBuyUserValue = (user:any, ticket:any, plusAmount:any, price: any) => {
+    setUsers((prev) => {
+      return prev.map((u) => {
+        if(u.name === ticket.name) {
+          return {...u, btc: u.btc+plusAmount, usdt: u.usdt - (plusAmount*price)}
+        }
+        if(u.name === user) {
+          return {...u, btc: u.btc-plusAmount, usdt: u.usdt + (plusAmount*price)}
+        }
+        return u
+      })
+    })
+  }
   const _onBookBuyPrice = (
     user: string,
     priceString: any,
@@ -106,15 +111,15 @@ function App() {
       if (price >= ticket.price && count > 0) {
         count -= ticket.number
         if (count > 0) {
-          udpateSellUserValue(ticket, ticket.number)
+          udpateSellUserValue(user, ticket, ticket.number)
           return {...ticket, number: 0}
         }
         if (count === 0) {
-          udpateSellUserValue(ticket, ticket.number)
+          udpateSellUserValue(user, ticket, ticket.number)
           return {...ticket, number: 0}
         }
         if (count < 0) {
-          udpateSellUserValue(ticket, ticket.number+count)
+          udpateSellUserValue(user, ticket, ticket.number+count)
           return {...ticket, number: -count}
         }
       }
@@ -140,15 +145,15 @@ function App() {
       if (price <= ticket.price && count > 0) {
         count -= ticket.number
         if (count > 0) {
-          udpateBuyUserValue(ticket, ticket.number)
+          udpateBuyUserValue(user, ticket, ticket.number, price)
           return {...ticket, number: 0}
         }
         if (count === 0) {
-          udpateBuyUserValue(ticket, ticket.number)
+          udpateBuyUserValue(user, ticket, ticket.number, price)
           return {...ticket, number: 0}
         }
         if (count < 0) {
-          udpateBuyUserValue(ticket, ticket.number+count)
+          udpateBuyUserValue(user, ticket, ticket.number+count, price)
           return {...ticket, number: -count}
         }
       }
@@ -183,7 +188,7 @@ function App() {
           <Text preset="p6" text="BTC"className="font-thin"/>
         </div>
         <Wall col={buyCol} preset="buy" />
-        <Text preset="p3" text="37500" className="text-success-60"/>
+        {/* <Text preset="p3" text="37500" className="text-success-60"/> */}
         <Wall col={sellCol} preset="sell" />
       </div>
 
