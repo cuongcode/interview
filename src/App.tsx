@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { Wall, Button, BaseInput, Text } from "./components";
 import { clsx } from "clsx";
+
 
 const BUYCOL = [
   { price: 42000, number: 15 },
@@ -18,6 +19,10 @@ const SELLCOL = [
 ];
 
 function App() {
+  const [User1, setUser1] = useState({btc: 13, usdt: 1000000})
+  const [User2, setUser2] = useState({btc: 20, usdt: 2000000})
+  const [User3, setUser3] = useState({btc: 5, usdt: 3000000})
+  const [User4, setUser4] = useState({btc: 18, usdt: 1500000})
   const [buyCol, setBuyCol] = useState(BUYCOL);
   const [sellCol, setSellCol] = useState(SELLCOL);
   const [buyPrice, setBuyPrice] = useState("");
@@ -96,9 +101,21 @@ function App() {
 
 export default App;
 
-const InputSection = ({price, count, onAdd, setPrice, setCount, text, preset}:{
-  price:any, count:any, onAdd:any, setPrice:any, setCount:any, text:any, preset:any
-}) => {
+interface InputSectionProps {
+  price: any; 
+  count: any; 
+  onAdd: any; 
+  setPrice: any; 
+  setCount: any; 
+  text: any; 
+  preset: any;
+  btc?: any;
+  usdt?: any;
+}
+
+const InputSection:FC<InputSectionProps> = (props) => {
+  const {price, count, onAdd, setPrice, setCount, text, preset, btc, usdt} = props
+
   return (
     <div className="flex flex-col gap-2">
     <BaseInput
@@ -113,6 +130,19 @@ const InputSection = ({price, count, onAdd, setPrice, setCount, text, preset}:{
       onChange={(e) => setCount(e.target.value.replace(/\D/g, ""))}
       suffix="BTC"
     />
+    <div className="flex items-center justify-between">
+      <Text preset="p4" text="Total"/>
+      <Text preset="p4" text={((+price)*(count)).toString()} />
+    </div>
+    <div className="flex items-center justify-between">
+      <Text preset="p5" text="Available"/>
+      {btc ? 
+        <Text preset="p5" text={btc}/>
+      : null }
+      {usdt ? 
+        <Text preset="p5" text={usdt}/>
+      : null }
+    </div>
     <Button className="mt-2" preset={preset} text={text} onClick={onAdd} disabled={price === '' || count === ''}/>
   </div>
   );
