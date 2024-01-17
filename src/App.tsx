@@ -12,7 +12,7 @@ function App() {
   const [buyCol, setBuyCol] = useState(BUYCOL);
   const [sellCol, setSellCol] = useState(SELLCOL);
   // const [buyCol, setBuyCol] = useState<any>([]);
-  // const [sellCol, setSellCol] = useState([]);
+  // const [sellCol, setSellCol] = useState<any>([]);
   const [buyPrice, setBuyPrice] = useState("");
   const [sellPrice, setSellPrice] = useState("");
   const [buyCount, setBuyCount] = useState("");
